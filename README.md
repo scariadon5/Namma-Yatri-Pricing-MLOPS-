@@ -16,8 +16,7 @@ An end-to-end MLOps system that predicts average neighborhood ride-hailing fares
 
 1. **Clone the repo:**
    ```bash
-   git clone [https://github.com/scariadon5/Namma-Yatri-Pricing-MLOPS-
-   cd Uber-Pricing-MLOPS](https://github.com/scariadon5/Namma-Yatri-Pricing-MLOPS-)
+   git clone [https://github.com/scariadon5/Namma-Yatri-Pricing-MLOPS-](https://github.com/scariadon5/Namma-Yatri-Pricing-MLOPS-)
 
 
 2. Setup the Virtual Environment & Dependencies
