@@ -40,7 +40,7 @@ if st.button("Predict Average Fare", type="primary", use_container_width=True):
     }
     
     # 2. Send request to our FastAPI backend
-    API_URL = "http://127.0.0.1:8000/predict"
+    API_URL = "http://api:8000/predict"
     
     try:
         with st.spinner("Querying Model API..."):

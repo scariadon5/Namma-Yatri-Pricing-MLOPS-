@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  # Service 1: The FastAPI Backend
+  api:
+    build:
+      context: .
+      dockerfile: src/Docker_file.api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  # Service 2: The Streamlit Frontend
+  streamlit_app:
+    build:
+      context: .
+      dockerfile: src/Docker_file.app
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    depends_on:
+      - api # Ensures the API boots up before the frontend tries to connect
+    environment:
+      - PYTHONUNBUFFERED=1
