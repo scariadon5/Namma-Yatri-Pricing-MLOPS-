@@ -1,0 +1,11 @@
+# Virtual Environments
+.venv/
+env/
+
+# Python Cache (Compiled bytecode)
+__pycache__/
+*.pyc
+
+# MLflow Tracking Data & SQLite local DB
+mlflow.db
+mlruns/
