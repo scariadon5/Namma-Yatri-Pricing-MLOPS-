@@ -27,19 +27,19 @@ An end-to-end MLOps system that predicts average neighborhood ride-hailing fares
 source .venv/Scripts/activate
 # Install the exact software dependencies
 pip install -r requirements.txt
-
+```
 
 3. **Spin Up the FastAPI Inference Server**
 ```bash
 uvicorn src.api:app --reload
-
+```
 Once running, you can explore the interactive API schemas at: http://127.0.0.1:8000/docs
 
 4. **Launch the Interactive User Dashboard**
 Open a new terminal window, ensure the virtual environment is active, and run:
 ```bash
 streamlit run src/app.py
-
+```
 The dashboard will automatically launch in your browser at http://localhost:8501. Adjust the sliders to pass live payload variables directly to your FastAPI backend!
 
 Once this file is saved in your root directory, you can run your `git add README.md`, commit it, and push it live to update your GitHub homepage profile!
