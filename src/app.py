@@ -1,14 +1,12 @@
 import streamlit as st
 import requests
 
-# Set the page configuration
 st.set_page_config(
     page_title="Namma Yatri Dynamic Pricing",
     page_icon="🛺",
     layout="centered"
 )
 
-# UI Header
 st.title("🛺 Namma Yatri Dynamic Pricing Engine")
 st.markdown("""
 This dashboard predicts the average neighborhood ride-hailing fare based on real-time macro data. 
@@ -17,7 +15,6 @@ It queries a live **FastAPI** backend serving a **Gradient Boosting Regressor** 
 
 st.divider()
 
-# Input Sliders
 st.subheader("Simulate Ride Dynamics")
 col1, col2 = st.columns(2)
 
@@ -28,18 +25,15 @@ with col1:
 with col2:
     completed_trips = st.number_input("Completed Trips in Area", min_value=10000, max_value=2000000, value=450000, step=10000)
 
-# Prediction Button
-st.write("") # Spacing
+st.write("")
 if st.button("Predict Average Fare", type="primary", use_container_width=True):
     
-    # 1. Prepare the JSON payload
     payload = {
         "distance_km": float(distance_km),
         "completed_trips": float(completed_trips),
-        "cancellation_rate": float(cancellation_rate / 100) # Convert % back to decimal
+        "cancellation_rate": float(cancellation_rate / 100)  # API expects a decimal, not a percentage
     }
     
-    # 2. Send request to our FastAPI backend
     API_URL = "http://api:8000/predict"
     
     try:
@@ -50,7 +44,6 @@ if st.button("Predict Average Fare", type="primary", use_container_width=True):
             result = response.json()
             predicted_fare = result["predicted_fare_inr"]
             
-            # 3. Display the result beautifully
             st.success("Prediction Successful!")
             st.metric(label="Predicted Neighborhood Fare", value=f"₹ {predicted_fare}")
             st.caption(f"Powered by: {result['model_version']}")
@@ -59,4 +52,4 @@ if st.button("Predict Average Fare", type="primary", use_container_width=True):
             st.error(f"API Error: {response.status_code} - {response.text}")
             
     except requests.exceptions.ConnectionError:
-        st.error("🚨 Could not connect to the API. Is your FastAPI server running on port 8000?")
+        st.error("Could not connect to the API. Check that the FastAPI server is running on port 8000.")
